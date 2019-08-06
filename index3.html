@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- This is my code for the initial web page in lecture 55 "First Map - Add Custom Data" 
+     https://www.udemy.com/introduction-to-web-programming-for-gis-applications/learn/lecture/6518028#overview -->
+<html lang="en">
+	<head>
+    	<meta charset="UTF-8">
+  		<title>webmap 101</title>
+  		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+   		<!-- Make sure you put this AFTER Leaflet's CSS -->
+ 		<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512 GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+ 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ 		<style>
+     		#header {
+         	height: 75px;
+         	background-color: darkgoldenrod;
+     		}    
+     		#mapdiv {
+         		height: 650px;
+         		background-color: salmon;
+     		}
+     		#side_panel {
+         		height: 650px;
+         		background-color: beige;
+     		}
+     		#footer {
+         		height: 75px;
+         		background-color: darkgrey;
+     		}
+ 		  </style> 
+ 	</head>
+ 	<body>
+    	<div id="header" class="col-md-12">
+        	<h1 class="text-center">Mexico City</h1>
+    	</div>
+    	<div id="side_panel" class="col-md-3">
+        	<h1 class="text-center">Attractions</h1>
+    	</div>
+    	<div id="mapdiv" class="col-md-9"></div>
+    	<div id="footer" class="col-md-12">
+        	<h4 id="map_coords" class="text-center">Latitute: 19.4 Longitude: -99.1 Zoom Level: 11</h4>
+        	<h4 class="text-center">&copy;2016 <a href="http://millermountain.com">Miller Mountain LLC</a></h4>
+    	</div>
+    	<script>
+			var mymap = L.map('mapdiv');
+			mymap.setView([19.4, -99.1], 11);
+			var backgroundLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+			mymap.addLayer(backgroundLayer);
+			
+			var zocaloMarker = L.marker([19.43278, -99.133333]);
+			zocaloMarker.addTo(mymap);
+			zocaloMarker.bindPopup("<h3 class='text-center'>Zocalo</h3><a href='https://en.wikipedia.org/wiki/Z%C3%B3calo' target='blank'><img src='img/balcon-del-zocalo.jpg' width='200px'></a>");
+		  </script>
+ 	</body>
+</html>
